@@ -13,7 +13,7 @@ async function carga_nullnames(req, res) {
     ];
     await coleccion.map((item, index) => {
         const bd_item = new Nullname(item);
-        bd_coleccion.push(categoria);
+        bd_coleccion.push(bd_item);
         bd_item.save()
             .then(item => {
                 //console.log(item);

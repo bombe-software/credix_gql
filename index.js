@@ -1,14 +1,11 @@
-const api = require('./deploy').api;
-const ws = require('./deploy').ws;
-const status = require('./deploy').status;
-const MONGO_URI = require('./deploy').MONGO_URI;
+const {api, ws, web, status, MONGO_URI} = require('./config/variables');
 
 //Librerias de express
 const express = require('express');
 const bodyParser = require('body-parser');
 const createServer = require('http').createServer;
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 
 //Librerias de la base de datos
 const mongoose = require('mongoose');
@@ -27,7 +24,7 @@ const PubSub = require('graphql-subscriptions').PubSub;
 //Importar schemas
 const schema = require('./src');
 mongoose.Promise = require('bluebird');
-mongoose.connect(MONGO_URI).catch(err => console.error(err));
+mongoose.connect(MONGO_URI, { useNewUrlParser: true }).catch(err => console.error(err));
 
 const corsOptions = {
   origin: web,
@@ -42,6 +39,9 @@ expressGraphQL({
   schema,
   graphiql: !status
 }));
+//Rutas express
+app.get('/registro', require('./routes/registro').registro);
+app.get(/img/, require("./routes/img").send);
 
 
 //Configuracion 
