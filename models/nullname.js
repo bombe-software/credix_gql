@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const categoria = mongoose.Schema({
+const nullname = mongoose.Schema({
     nombre: String
 });
 
-mongoose.model('categoria', categoria);
+mongoose.model('nullname', nullname);

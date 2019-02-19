@@ -13,7 +13,7 @@ exports.send = function (req, res) {
     if (content_types[filename.split('.').pop()] == undefined) {
         res.end('Error[1]');
     } else {
-        fs.readFile(`./assets/logos/${filename}`, function (err, data) {
+        fs.readFile(`./assets/img/${filename}`, function (err, data) {
             if(err){
                 res.end('Error[2]');
             }else{

@@ -1,22 +1,21 @@
 //Configuracion de GraphQL
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLInt, GraphQLFloat } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLInt } = graphql;
 
 //Funciones add
-const { add_bug } = require('./bug');
+const nullname = require('./nullname');
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
   fields: {
-    add_bug: {
-      type: require('./../queries/bug'),
+    test: {
+      type: GraphQLString,
       args: {
-        comentario: { type: GraphQLString }, 
-        estrellas: { type: GraphQLFloat }
+        nombre: { type: GraphQLString }
       },
       resolve(parentValue, args, req) {
-        return add_bug({ args, req });
+        return nullname.add({ args, req });
       }
     }
   }

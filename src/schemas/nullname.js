@@ -4,14 +4,13 @@ const {
   GraphQLObjectType,  GraphQLString,  GraphQLID
 } = graphql;
 
-const CategoriaMateria = mongoose.model('categoria_materia');
 
-const CategoriaMateriaType = new GraphQLObjectType({
-  name:  'CategoriaMateriaType',
+const NullnameType = new GraphQLObjectType({
+  name:  'NullnameType',
   fields: () => ({
     id: { type: GraphQLID },
     nombre: { type: GraphQLString }
   })
 });
 
-module.exports = CategoriaMateriaType;
+module.exports = NullnameType;

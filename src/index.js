@@ -2,7 +2,7 @@ const _ = require('lodash');
 const graphql = require('graphql');
 const { GraphQLSchema } = graphql;
 
-const RootQuery = require('./queries');
+const RootQuery = require('./schemas');
 const RootMutation = require('./mutations');
 const RootSubscription = require('./subscriptions');
 

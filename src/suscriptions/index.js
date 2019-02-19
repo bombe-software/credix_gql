@@ -1,13 +1,10 @@
 //Configuracion de GraphQL
 const graphql = require('graphql');
 const { GraphQLObjectType } = graphql;
-const pubsub = require('./../../config/pubsub').pubsub;
+const pubsub = require('./../../pubsub').pubsub;
 
 //Tipos de chemas
-const { 
-  GraphQLString 
-} = graphql;
-// const SolicitudEventoType = require('./../schemas/solicitud_evento');
+const NullnameType = require('./../schemas/nullname');
 
 
 //Contantes de las suscripciones
@@ -23,10 +20,10 @@ const RootSubscription = new GraphQLObjectType({
   fields: {
     //Funciones add
     prueba: {
-      type: GraphQLString,
-      subscribe: () => pubsub.asyncIterator(EVENTO_ADD),
+      type: NullnameType,
+      subscribe: () => pubsub.asyncIterator(PRUEBA),
       resolve: (payload, args, context, info) => {
-        return resolver_generico(payload, args, context, info);
+        return resolver_generico(payload, args, context, info, PRUEBA);
       }
     }
   }

@@ -3,27 +3,20 @@
 /**
  * Variables de deploy
 
-exports.api = 'http://localhost:9000';
-exports.ws = "ws://localhost:9000";
-exports.web = "http://localhost:3000";
+exports.api = 'https://www.demos-web.com';
+exports.ws = "https://demos-krb.herokuapp.com";
+exports.web = "https://demos-krb.herokuapp.com";
 exports.status = true;
-exports.MONGO_URI = `mongodb://admin:n0m3l0@ds147233.mlab.com:47233/nullname`;
+exports.MONGO_URI = `mongodb://admin:n0m3l0@ds255767.mlab.com:55767/demos_db`;
  */
-
 
 
 /**
  * Variables de desarrollo
  */
-exports.api = 'http://localhost:9000';
-exports.ws = "ws://localhost:9000";
-exports.web = "http://localhost:3000";
+exports.api = 'https://www.demos-web.com';
+exports.ws = "https://demos-krb.herokuapp.com";
+exports.web = "https://demos-krb.herokuapp.com";
 exports.status = false;
-exports.MONGO_URI = `mongodb://localhost/nullname`;
-
-
-/**
- * Comandos para descargar la base
- * mongodump -h ds147233.mlab.com:47233 -d nullname -u admin -p n0m3l0 -o C:\Users\drasa\Desktop\NullName\api_nullname
- * mongorestore -d nullname C:\U sers\drasa\Desktop\NullName\api_nullname\nullname
- */
+exports.MONGO_URI = `mongodb://admin:n0m3l0@ds255767.mlab.com:55767/demos_db`;
+exports.MONGO_URI = `mongodb://localhost/demos_db`;

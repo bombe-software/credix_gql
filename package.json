@@ -10,7 +10,7 @@
     "express-graphql": "^0.7.1",
     "graphql": "^14.0.2",
     "graphql-subscriptions": "^1.0.0",
-    "mongoose": "^5.4.5",
+    "mongoose": "^5.3.8",
     "subscriptions-transport-ws": "^0.9.15"
   },
   "devDependencies": {
