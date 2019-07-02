@@ -13,6 +13,10 @@ const models = require('./models');
 
 //Librerias de autenticacion
 const cors = require('cors');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const passport = require('passport');
+const configPassport = require('./config_passport');
 
 //Librerias de graphql
 const expressGraphQL = require('express-graphql');
@@ -31,6 +35,19 @@ const corsOptions = {
   credentials: true,
 }
 app.use(cors(corsOptions));
+
+//Configuracion de las sesiones e integracion con mongodb
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'jaiba',
+  store: new MongoStore({
+    url: MONGO_URI,
+    autoReconnect: true
+  })
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //Integracion de graphql

@@ -1,10 +1,11 @@
 //Configuracion de GraphQL
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLInt } = graphql;
+const { GraphQLObjectType, GraphQLString } = graphql;
 
 //Funciones add
 const nullname = require('./nullname');
+const usario = require('./usuario');
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
@@ -16,6 +17,16 @@ const RootMutation = new GraphQLObjectType({
       },
       resolve(parentValue, args, req) {
         return nullname.add({ args, req });
+      }
+    }, 
+    login: {
+      type: require('./../schemas/usuario'),
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+      },
+      resolve(parentValue, { email, password }, req) {
+        return usuario.login({ email, password, req });
       }
     }
   }

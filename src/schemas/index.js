@@ -17,6 +17,12 @@ const RootQuery = new GraphQLObjectType({
       resolve() {
         return Nullname.find({});
       }
+    },
+    usuario: {
+      type: require('./usuario'),
+      resolve(parentValue, args, req) {
+        return req.user;
+      }
     }
   })
 });
