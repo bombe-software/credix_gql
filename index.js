@@ -1,4 +1,4 @@
-const {api, ws, web, status, MONGO_URI} = require('./config/variables');
+const { api, ws, web, status, MONGO_URI } = require('./config/variables');
 //Librerias openCV
 const cv = require('opencv4nodejs');
 const wCamp = new cv.VideoCapture(0);
@@ -59,20 +59,20 @@ app.use(passport.session());
 //   res.sendFile(path.join(__dirname, './index.html'))
 // });
 
-setInterval(()=>{
+setInterval(() => {
   const frame = wCamp.read();
   const image = cv.imencode('.jpg',frame).toString('base64');
-  //const 
+  
   io.emit('image', image);
-},50)
+}, 50)
 
 
 //Integracion de graphql
-app.use('/graphql', bodyParser.json(),  
-expressGraphQL({
-  schema,
-  graphiql: !status
-}));
+app.use('/graphql', bodyParser.json(),
+  expressGraphQL({
+    schema,
+    graphiql: !status
+  }));
 
 //Rutas express
 app.get('/registro', require('./routes/registro').registro);
@@ -86,9 +86,9 @@ server.listen(port, () => {
     subscribe,
     schema: schema,
   }, {
-    server: server,
-    path: '/subscriptions',
-  });
-  console.log(`${api}`); 
-  console.log(`${ws}/subscriptions`); 
+      server: server,
+      path: '/subscriptions',
+    });
+  console.log(`${api}`);
+  console.log(`${ws}/subscriptions`);
 });

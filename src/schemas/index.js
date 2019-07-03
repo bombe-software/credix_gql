@@ -46,7 +46,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     usuario: {
-      type: new GraphQLList(require('./usuario')),
+      type: require('./usuario'),
       resolve(parentValue, args, req) {
         return req.user;
       }

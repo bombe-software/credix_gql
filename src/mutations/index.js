@@ -32,15 +32,15 @@ const RootMutation = new GraphQLObjectType({
     registro: {
       type: require('./../schemas/usuario'),
       args: {
-        correo: { type: GraphQLString },
+        email: { type: GraphQLString },
         nombre: { type: GraphQLString },
         nombre_usuario:  { type: GraphQLString },
         password:  { type: GraphQLString },
         sexo:  { type: GraphQLString },
         token: { type: GraphQLString }
       },
-      resolve(parentValue, { correo, nombre, nombre_usuario, password,  rpassword, sexo }, req) {
-        return usuario.signup({ correo, nombre, nombre_usuario, password,  rpassword, sexo, req });
+      resolve(parentValue, { email, nombre, nombre_usuario, password,  rpassword, sexo }, req) {
+        return usuario.signup({ email, nombre, nombre_usuario, password,  rpassword, sexo, req });
       }
     }
   }
