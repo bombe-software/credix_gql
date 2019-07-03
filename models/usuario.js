@@ -5,7 +5,13 @@ const usuario = mongoose.Schema({
     nombre: String,
     sexo: String,
     email: String,
-    password: String
+    password: String,
+    nombre_usuario: String,
+    nombre: String,
+    tipo_usuario: {
+        type: String,
+        enum: ['Administrador', 'Institucion', 'Gestor']
+    },
 });
 
 mongoose.model('usuario', usuario);
