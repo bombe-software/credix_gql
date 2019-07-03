@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const graphql = require('graphql');
 const { 
   GraphQLObjectType, GraphQLList, GraphQLID, 
-  GraphQLNonNull, GraphQLString 
+  GraphQLNonNull, GraphQLString
 } = graphql;
 
 //Importar models
 const Nullname = mongoose.model('nullname');
 const Usuario = mongoose.model('usuario');
 const Gestor = mongoose.model('gestor');
-const Institucion = mongoose.model('insitucion');
+const Institucion = mongoose.model('institucion');
 
 
 const RootQuery = new GraphQLObjectType({

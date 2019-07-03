@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLID, GraphQLString } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLList } = require('graphql');
 const Institucion = require('mongoose').model('institucion');
 
 const InstitucionType = new GraphQLObjectType({
