@@ -4,4 +4,5 @@ require('./gestor');
 require('./institucion');
 require('./amonestacion');
 require('./cliente');
-require('./solicitud')
+require('./solicitud');
+require('./token')
