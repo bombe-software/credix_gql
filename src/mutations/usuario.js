@@ -6,8 +6,7 @@ function login({ email, password, req }) {
   //Area del resolver
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
-      if (!user) { reject('Password o email incorrecto.') }
-
+      if (!user) {reject('Password o email incorrecto.') }
       req.login(user, () => resolve(user));
     })({ body: { email, password } });
   });

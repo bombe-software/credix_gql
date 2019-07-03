@@ -1,10 +1,16 @@
 const {api, ws, web, status, MONGO_URI} = require('./config/variables');
+//Librerias openCV
+const cv = require('opencv4nodejs');
+const wCamp = new cv.VideoCapture(0);
 
 //Librerias de express
 const express = require('express');
 const bodyParser = require('body-parser');
 const createServer = require('http').createServer;
 const app = express();
+const server = createServer(app);
+const io = require('socket.io')(server);
+
 const port = process.env.PORT || 9000;
 
 //Librerias de la base de datos
@@ -49,6 +55,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// app.get('/webcam', (req, res) => {
+//   res.sendFile(path.join(__dirname, './index.html'))
+// });
+
+setInterval(()=>{
+  const frame = wCamp.read();
+  const image = cv.imencode('.jpg',frame).toString('base64');
+  //const 
+  io.emit('image', image);
+},50)
+
 
 //Integracion de graphql
 app.use('/graphql', bodyParser.json(),  
@@ -56,13 +73,13 @@ expressGraphQL({
   schema,
   graphiql: !status
 }));
+
 //Rutas express
 app.get('/registro', require('./routes/registro').registro);
 app.get(/img/, require("./routes/img").send);
 
-
 //Configuracion 
-const server = createServer(app);
+
 server.listen(port, () => {
   new SubscriptionServer({
     execute,

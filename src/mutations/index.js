@@ -5,7 +5,7 @@ const { GraphQLObjectType, GraphQLString } = graphql;
 
 //Funciones add
 const nullname = require('./nullname');
-const usario = require('./usuario');
+const usuario = require('./usuario');
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
