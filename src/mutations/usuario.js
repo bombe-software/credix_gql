@@ -14,11 +14,11 @@ function login({ email, password, req }) {
 }
 function signup({ args, req }) {
   const {
-    nombre, sexp,
-    email, password
-  } = args
+    correo, nombre, nombre_usuario,
+    password,  sexo, token
+  } = args;
 
-
+  console.log(correo, nombre, nombre_usuario, password,  sexo);
 }
 
 //Se exporta la funcion
