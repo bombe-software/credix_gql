@@ -12,6 +12,10 @@ const usuario = mongoose.Schema({
         type: String,
         enum: ['Administrador', 'Institucion', 'Gestor']
     },
+    sexo: {
+        type: String,
+        enum: ['Femenino', 'Masculino']
+    }
 });
 
 mongoose.model('usuario', usuario);
