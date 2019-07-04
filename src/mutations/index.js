@@ -1,11 +1,12 @@
 //Configuracion de GraphQL
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql;
 
 //Funciones add
 const nullname = require('./nullname');
 const usuario = require('./usuario');
+const tokens = require('./token');
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
@@ -29,6 +30,14 @@ const RootMutation = new GraphQLObjectType({
         return usuario.login({ email, password, req });
       }
     },
+    logout: {
+      type: require('./../schemas/usuario'),
+      resolve(parentValue, args, req) {
+        const { user } = req;
+        req.logout();
+        return user;
+      }
+    },
     registro: {
       type: require('./../schemas/usuario'),
       args: {
@@ -39,8 +48,18 @@ const RootMutation = new GraphQLObjectType({
         sexo:  { type: GraphQLString },
         token: { type: GraphQLString }
       },
-      resolve(parentValue, { email, nombre, nombre_usuario, password, sexo }, req) {
-        return usuario.signup({ email, nombre, nombre_usuario, password, sexo, req });
+      resolve(parentValue, { email, nombre, nombre_usuario, password, sexo, token }, req) {
+        return usuario.signup({ email, nombre, nombre_usuario, password, sexo, token, req });
+      }
+    },
+      token: {
+        type: require('./../schemas/token'),
+        args: {
+          institucion: { type: GraphQLID },
+          token: { type: GraphQLString }
+        },
+        resolve(parentValue, { institucion,token }, req) {
+          return tokens.generateToken({ institucion, token, req });
       }
     }
   }

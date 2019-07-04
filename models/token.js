@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const token = mongoose.Schema({
-    gestor: {
+    institucion: {
         type: Schema.Types.ObjectId,
-        ref: 'gestor'
+        ref: 'institucion'
     },
     token: String
 });

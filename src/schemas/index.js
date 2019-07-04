@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const graphql = require('graphql');
-const { 
-  GraphQLObjectType, GraphQLList, GraphQLID, 
+const {
+  GraphQLObjectType, GraphQLList, GraphQLID,
   GraphQLNonNull, GraphQLString
 } = graphql;
 
@@ -47,6 +47,12 @@ const RootQuery = new GraphQLObjectType({
     },
     usuario: {
       type: require('./usuario'),
+      resolve(parentValue, args, req) {
+        return req.user;
+      }
+    },
+    token: {
+      type: require('./token'),
       resolve(parentValue, args, req) {
         return req.user;
       }

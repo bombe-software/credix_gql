@@ -1,19 +1,19 @@
-const { GraphQLObjectType, GraphQLID, GraphQLList } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = require('graphql');
 const Token = require('mongoose').model('token');
 
 const TokenType = new GraphQLObjectType({
   name: 'TokenType',
   fields: () => ({
     id: { type: GraphQLID },
-    gestor: {
-      type: require('./gestor'),
+    institucion: {
+      type: require('./institucion'),
       resolve(parentValue) {
         return Token.findById(parentValue.id)
-          .populate('gestor')
-          .then(token => token.gestor)
+          .populate('institucion')
+          .then(token => token.institucion)
       }
     },
-    prestamos:  { type: GraphQLString }
+    token:  { type: GraphQLString }
   })
 });
 

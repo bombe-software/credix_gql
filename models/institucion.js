@@ -8,7 +8,7 @@ const institucion = mongoose.Schema({
     },
     gestores: [{
         type: Schema.Types.ObjectId,
-        ref: 'solicitud'
+        ref: 'gestor'
     }]
 });
 
