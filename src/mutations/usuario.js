@@ -15,6 +15,7 @@ function login({ email, password, req }) {
 }
 function signup(args) {
   console.log("Entra");
+  console.log(args);
   const {
     email, nombre, nombre_usuario,
     password, sexo, token
