@@ -71,11 +71,10 @@ const RootMutation = new GraphQLObjectType({
         domicilio: { type: GraphQLString },
         edad: { type: GraphQLInt },
         curp: { type: GraphQLString },
-        rfc: { type: GraphQLString },
-        ingresos: { type: GraphQLInt }
+        rfc: { type: GraphQLString }
       },
-      resolve(parentValue, { nombre,telefono,domicilio,edad,curp,rfc,ingresos }, req) {
-        return cliente.add({ nombre,telefono,domicilio,edad,curp,rfc,ingresos, req });
+      resolve(parentValue, { nombre,telefono,domicilio,edad,curp,rfc }, req) {
+        return cliente.add({ nombre,telefono,domicilio,edad,curp,rfc, req });
       }
     },
 

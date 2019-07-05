@@ -7,10 +7,10 @@ const amonestacion = mongoose.Schema({
     cliente: {
         type: Schema.Types.ObjectId,
         ref: 'cliente'
-    },
-    amonestacion: {
+    }, 
+    solicitud: {
         type: Schema.Types.ObjectId,
-        ref: 'amonestacion'
+        ref: 'solicitud'
     }
 });
 
