@@ -120,6 +120,16 @@ const RootMutation = new GraphQLObjectType({
       resolve(parentValue, { cantidad, cliente, gestor, test }, req) {
         return solicitud.add({ cantidad, cliente, gestor, test, req });
       }
+    },
+    aprobarDenegar: {
+      type: require('./../schemas/solicitud'),
+      args: {
+        status: { type: GraphQLString },
+        id: { type: GraphQLID }
+      }, 
+      resolve(parentValue, { status, id }, req) {
+        return solicitud.aprobar_denegar({ status, id,  req });
+      }
     }
   }
 });

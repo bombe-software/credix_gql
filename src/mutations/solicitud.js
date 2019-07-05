@@ -19,5 +19,15 @@ async function add( args) {
     return Solicitud.findOne({cliente});
 }
 
+async function aprobar_denegar( args) {
+    const {
+        status,id
+    } = args;
+    
+    console.log(status, id);
+
+    return Solicitud.findById(mongoose.Types.ObjectId(id));
+}
+
 //Se exporta la funcion
-module.exports = { add };
+module.exports = { add, aprobar_denegar };

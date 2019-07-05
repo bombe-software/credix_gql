@@ -94,6 +94,12 @@ const RootQuery = new GraphQLObjectType({
       resolve() {
         return Test.find({});
       }
+    },
+    solicitudes_gestor: {
+      type: new GraphQLList(require('./solicitud')),
+      resolve(parentValue, values, req) {
+        return Solicitud.find({gestor: mongoose.Types.ObjectId(req.user.id)});
+      }
     }
   })
 });
