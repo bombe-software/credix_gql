@@ -6,9 +6,8 @@
        const {
            nombre,telefono,domicilio,edad,curp,rfc
        } = args;
-       const promedio_ingresos_mensual = args.ingresos;
        const cliente = new Cliente({
-            nombre,telefono,domicilio,edad,curp,rfc,promedio_ingresos_mensual
+            nombre,telefono,domicilio,edad,curp,rfc
        });
        
        await cliente.save();

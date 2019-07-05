@@ -5,4 +5,5 @@ require('./institucion');
 require('./amonestacion');
 require('./cliente');
 require('./solicitud');
-require('./token')
+require('./token');
+require('./test');
