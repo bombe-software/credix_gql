@@ -10,6 +10,7 @@ const tokens = require('./token');
 const cliente = require('./cliente');
 const amonestacion = require('./amonestacion');
 const test = require('./test');
+const solicitud = require('./solicitud');
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
@@ -105,6 +106,7 @@ const RootMutation = new GraphQLObjectType({
         cliente: { type: GraphQLID }
       },
       resolve(parentValue, { cliente, promedio_ingresos_mensuales }, req) {
+        console.log('xD')
         return test.add({ cliente, promedio_ingresos_mensuales, req });
       }
     },
@@ -117,7 +119,8 @@ const RootMutation = new GraphQLObjectType({
         test: { type: GraphQLID }
       }, 
       resolve(parentValue, { cantidad, cliente, gestor, test }, req) {
-        return test.add({ cantidad, cliente, gestor, test, req });
+        console.log('some')
+        return solicitud.add({ cantidad, cliente, gestor, test, req });
       }
     }
   }
