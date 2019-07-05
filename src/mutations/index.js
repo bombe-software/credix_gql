@@ -9,6 +9,7 @@ const usuario = require('./usuario');
 const tokens = require('./token');
 const cliente = require('./cliente');
 const amonestacion = require('./amonestacion');
+const test = require('./test');
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
@@ -95,6 +96,16 @@ const RootMutation = new GraphQLObjectType({
       },
       resolve(parentValue, { dias,cliente,solicitud,cantidad_deuda }, req) {
         return amonestacion.add({ dias,cliente,solicitud,cantidad_deuda, req });
+      }
+    },
+    addTest: {
+      type: require('./../schemas/test'),
+      args: {
+        promedio_ingresos_mensuales: { type: GraphQLInt },
+        cliente: { type: GraphQLID }
+      },
+      resolve(parentValue, { cliente, promedio_ingresos_mensuales }, req) {
+        return test.add({ cliente, promedio_ingresos_mensuales, req });
       }
     }
   }

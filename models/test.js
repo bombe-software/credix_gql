@@ -6,6 +6,7 @@ const test = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'cliente'
     },
+    //RFC
     promedio_ingresos_mensuales: Number
 });
 

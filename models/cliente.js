@@ -5,7 +5,6 @@ const cliente = mongoose.Schema({
     nombre: String,
     telefono: String,
     domicilio: String,
-    edad: Number, 
     curp: String,
     rfc: String,
     solicitud: [{
