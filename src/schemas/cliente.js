@@ -16,7 +16,6 @@ const ClienteType = new GraphQLObjectType({
       }
     },
     domicilio: { type: GraphQLString },
-    edad: { type: GraphQLInt },
     curp: { type: GraphQLString },
     rfc: { type: GraphQLString }
   })

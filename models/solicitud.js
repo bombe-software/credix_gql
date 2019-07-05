@@ -10,7 +10,7 @@ const solicitud = mongoose.Schema({
     gestor: {
         type: Schema.Types.ObjectId,
         ref: 'gestor'
-    },
+    }, 
     test: {
         type: Schema.Types.ObjectId,
         ref: 'test'

@@ -11,6 +11,8 @@ const Usuario = mongoose.model('usuario');
 const Gestor = mongoose.model('gestor');
 const Institucion = mongoose.model('institucion');
 const Cliente = mongoose.model('cliente');
+const Solicitud = mongoose.model('solicitud');
+const Test = mongoose.model('test');
 
 const RootQuery = new GraphQLObjectType({
   name: 'Consultas',
@@ -63,6 +65,7 @@ const RootQuery = new GraphQLObjectType({
         return Cliente.find({});
       }
     },
+<<<<<<< HEAD
     cliente: {
       type: require('./cliente'),
       args: {
@@ -72,6 +75,20 @@ const RootQuery = new GraphQLObjectType({
         return Cliente.findById(id);
       }
     },
+=======
+    solicitudes: {
+      type: new GraphQLList(require('./solicitud')),
+      resolve() {
+        return Solicitud.find({});
+      }
+    },
+    tests: {
+      type: new GraphQLList(require('./test')),
+      resolve() {
+        return Test.find({});
+      }
+    }
+>>>>>>> d66fc2fa7be23d0462c6006045370038dcd36c8f
   })
 });
 

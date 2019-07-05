@@ -8,6 +8,8 @@ const nullname = require('./nullname');
 const usuario = require('./usuario');
 const tokens = require('./token');
 const cliente = require('./cliente');
+const amonestacion = require('./amonestacion');
+const test = require('./test');
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
@@ -77,7 +79,35 @@ const RootMutation = new GraphQLObjectType({
         return cliente.add({ nombre,telefono,domicilio,edad,curp,rfc, req });
       }
     },
-
+    addAmonestacion: {
+      /**
+        mutation AddAmonestacion($dias: Int!, $cliente: ID!, $cantidad_deuda: Int!, $solicitud: ID!   ){
+          addAmonestacion(dias: $dias, cliente: $cliente, cantidad_deuda: $cantidad_deuda, solicitud: $solicitud){
+            id
+          }
+        }
+       */
+      type: require('./../schemas/amonestacion'),
+      args: {
+        dias: { type: GraphQLInt },
+        cliente: { type: GraphQLID },
+        solicitud: { type: GraphQLID },
+        cantidad_deuda: { type: GraphQLInt }
+      },
+      resolve(parentValue, { dias,cliente,solicitud,cantidad_deuda }, req) {
+        return amonestacion.add({ dias,cliente,solicitud,cantidad_deuda, req });
+      }
+    },
+    addTest: {
+      type: require('./../schemas/test'),
+      args: {
+        promedio_ingresos_mensuales: { type: GraphQLInt },
+        cliente: { type: GraphQLID }
+      },
+      resolve(parentValue, { cliente, promedio_ingresos_mensuales }, req) {
+        return test.add({ cliente, promedio_ingresos_mensuales, req });
+      }
+    }
   }
 });
 

@@ -4,10 +4,10 @@
    //Funcion
    async function add( args,req) {
        const {
-           nombre,telefono,domicilio,edad,curp,rfc
+           nombre,telefono,domicilio,curp,rfc
        } = args;
        const cliente = new Cliente({
-            nombre,telefono,domicilio,edad,curp,rfc
+            nombre,telefono,domicilio,curp,rfc
        });
        
        await cliente.save();
