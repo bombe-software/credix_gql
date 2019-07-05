@@ -65,10 +65,28 @@ const RootQuery = new GraphQLObjectType({
         return Cliente.find({});
       }
     },
+    cliente: {
+      type: require('./cliente'),
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, { id }) {
+        return Cliente.findById(id);
+      }
+    },
     solicitudes: {
       type: new GraphQLList(require('./solicitud')),
       resolve() {
         return Solicitud.find({});
+      }
+    },
+    solicitud: {
+      type: require('./solicitud'),
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, { id }) {
+        return Solicitud.findById(id);
       }
     },
     tests: {
