@@ -8,11 +8,6 @@ async function add( args) {
         cliente,
         promedio_ingresos_mensuales
     } = args;
-    
-    console.log({
-        cliente,
-        promedio_ingresos_mensuales
-    })
 
     const test = new Test({
         cliente,
