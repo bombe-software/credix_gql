@@ -65,7 +65,6 @@ const RootQuery = new GraphQLObjectType({
         return Cliente.find({});
       }
     },
-<<<<<<< HEAD
     cliente: {
       type: require('./cliente'),
       args: {
@@ -75,11 +74,19 @@ const RootQuery = new GraphQLObjectType({
         return Cliente.findById(id);
       }
     },
-=======
     solicitudes: {
       type: new GraphQLList(require('./solicitud')),
       resolve() {
         return Solicitud.find({});
+      }
+    },
+    solicitud: {
+      type: require('./solicitud'),
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, { id }) {
+        return Solicitud.findById(id);
       }
     },
     tests: {
@@ -88,7 +95,6 @@ const RootQuery = new GraphQLObjectType({
         return Test.find({});
       }
     }
->>>>>>> d66fc2fa7be23d0462c6006045370038dcd36c8f
   })
 });
 
