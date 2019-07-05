@@ -107,6 +107,18 @@ const RootMutation = new GraphQLObjectType({
       resolve(parentValue, { cliente, promedio_ingresos_mensuales }, req) {
         return test.add({ cliente, promedio_ingresos_mensuales, req });
       }
+    },
+    addSolicitud: {
+      type: require('./../schemas/solicitud'),
+      args: {
+        cantidad: { type: GraphQLInt },        
+        cliente: { type: GraphQLID },
+        gestor: { type: GraphQLID },         
+        test: { type: GraphQLID }
+      }, 
+      resolve(parentValue, { cantidad, cliente, gestor, test }, req) {
+        return test.add({ cantidad, cliente, gestor, test, req });
+      }
     }
   }
 });

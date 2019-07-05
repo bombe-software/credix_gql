@@ -19,7 +19,10 @@ const solicitud = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'amonestacion'
     }],
-    status: String,
+    status: {
+        type: String,
+        enum: ['Aprobada', 'Negada', 'Pendiente']
+    },
     fecha: Date
 });
 

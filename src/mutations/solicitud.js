@@ -5,14 +5,13 @@ const Solicitud = require('mongoose').model('solicitud');
 async function add( args) {
     const {
         cantidad,        cliente,
-        gestor,         test,       amonestaciones,
-        status,        fecha
+        gestor,         test
     } = args;
     
     const solicitud = new Solicitud({
         cantidad,  cliente,
         gestor, test, 
-        status, fecha: new Date().toString()
+        status: 'Pendiente', fecha: new Date().toString()
     });
     
     await solicitud.save();
