@@ -8,6 +8,11 @@ async function add(args) {
         gestor, test
     } = args;
 
+    
+    console.log({
+        cantidad,        cliente,
+        gestor,         test
+    })
     const solicitud = new Solicitud({
         cantidad, cliente,
         gestor, test,
