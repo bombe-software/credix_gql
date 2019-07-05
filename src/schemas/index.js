@@ -10,7 +10,7 @@ const Nullname = mongoose.model('nullname');
 const Usuario = mongoose.model('usuario');
 const Gestor = mongoose.model('gestor');
 const Institucion = mongoose.model('institucion');
-
+const Cliente = mongoose.model('cliente');
 
 const RootQuery = new GraphQLObjectType({
   name: 'Consultas',
@@ -56,7 +56,13 @@ const RootQuery = new GraphQLObjectType({
       resolve(parentValue, args, req) {
         return req.user;
       }
-    }
+    },
+    clientes: {
+      type: new GraphQLList(require('./cliente')),
+      resolve() {
+        return Cliente.find({});
+      }
+    },
   })
 });
 
