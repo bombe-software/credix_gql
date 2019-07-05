@@ -1,7 +1,7 @@
 const { api, ws, web, status, MONGO_URI } = require('./config/variables');
 //Librerias openCV
-const cv = require('opencv4nodejs');
-const wCamp = new cv.VideoCapture(0);
+// const cv = require('opencv4nodejs');
+// const wCamp = new cv.VideoCapture(0);
 
 //Librerias de express
 const express = require('express');
@@ -59,12 +59,12 @@ app.use(passport.session());
 //   res.sendFile(path.join(__dirname, './index.html'))
 // });
 
-setInterval(() => {
-  const frame = wCamp.read();
-  const image = cv.imencode('.jpg',frame).toString('base64');
+// setInterval(() => {
+//   const frame = wCamp.read();
+//   const image = cv.imencode('.jpg',frame).toString('base64');
   
-  io.emit('image', image);
-}, 50)
+//   io.emit('image', image);
+// }, 50)
 
 
 //Integracion de graphql

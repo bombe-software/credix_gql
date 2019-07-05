@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const cliente = mongoose.Schema({
     nombre: String,
-    telefono: Number,
+    telefono: String,
     amonestaiones: [{
         type: Schema.Types.ObjectId,
         ref: 'amonestacion'
