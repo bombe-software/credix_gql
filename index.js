@@ -1,7 +1,7 @@
 const { api, ws, web, status, MONGO_URI } = require('./config/variables');
 //Librerias openCV
-const cv = require('opencv4nodejs');
-const wCamp = new cv.VideoCapture(0);
+//const cv = require('opencv4nodejs');
+//const wCamp = new cv.VideoCapture(0);
 
 //Librerias de express
 const express = require('express');
@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const createServer = require('http').createServer;
 const app = express();
 const server = createServer(app);
-const io = require('socket.io')(server);
+//const io = require('socket.io')(server);
 
 const port = process.env.PORT || 9000;
 
@@ -58,13 +58,15 @@ app.use(passport.session());
 // app.get('/webcam', (req, res) => {
 //   res.sendFile(path.join(__dirname, './index.html'))
 // });
-
+/*
 setInterval(() => {
   const frame = wCamp.read();
+
   const image = cv.imencode('.jpg',frame).toString('base64');
   
   io.emit('image', image);
 }, 50)
+*/
 
 
 //Integracion de graphql
