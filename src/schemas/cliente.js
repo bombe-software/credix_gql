@@ -6,7 +6,7 @@ const ClienteType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     nombre: { type: GraphQLString },
-    telefono: {type: GraphQLInt},
+    telefono: {type: GraphQLString},
     amonestaciones: {
         type: require('./amonestacion'),
         resolve(parentValue) {
