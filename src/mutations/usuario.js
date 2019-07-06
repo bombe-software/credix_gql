@@ -34,7 +34,8 @@ async function signup(args) {
 
   const usuario = new User({
     email, nombre, nombre_usuario,
-    password, sexo, tipo_usuario
+    password, sexo, tipo_usuario,
+    status: 'Activo'
   });
   usuario.save(function (err, usu) { console.log(err); });
   const usuarioId = usuario._id;
