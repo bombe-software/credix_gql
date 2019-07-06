@@ -9,7 +9,11 @@ const gestor = mongoose.Schema({
     prestamos: [{
         type: Schema.Types.ObjectId,
         ref: 'solicitud'
-    }]
+    }],
+    status: {
+        type: String,
+        enum: ['Activo', 'Inactivo']
+    }
 });
 
 mongoose.model('gestor', gestor);

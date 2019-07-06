@@ -20,6 +20,9 @@ const GestorType = new GraphQLObjectType({
           .populate('prestamos')
           .then(gestor => gestor.prestamos);
       }
+    },
+    status: { 
+      type: GraphQLString 
     }
   })
 });
