@@ -100,7 +100,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parentValue, values, req) {
         return Solicitud.find({gestor: mongoose.Types.ObjectId(req.user.id)});
       }
-    }
+    }     
   })
 });
 

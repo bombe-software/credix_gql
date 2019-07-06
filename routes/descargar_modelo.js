@@ -1,12 +1,11 @@
 var fs = require('fs');
+const mongoose = require('mongoose');
 const Test = mongoose.model('test');
 
 exports.send = function (req, res) {
     Test.find({}).map((u)=>{ 
         console.log(u)
-        //return u.name; 
     });
-
     /*
     tipo_prestamo ['personal ', 'bienes de consumo duradero', 'estudios', 'hipotecarios', 'empresarial']
     monto_credito Number

@@ -12,9 +12,9 @@ const test = mongoose.Schema({
     },
     monto_credito: Number,
     /**
-     *  corto plazo. plazo máximo de un año.
-        medio plazo. entre un año y tres años.
-        largo plazo. superior a los tres años.
+       corto_plazo. plazo máximo de un año.
+       medio plazo. entre un año y tres años.
+       largo plazo. superior a los tres años.
      */
     tipo_interes_manejar:{
         type: String,

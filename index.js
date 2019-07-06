@@ -80,6 +80,7 @@ app.use('/graphql', bodyParser.json(),
 app.get('/registro', require('./routes/registro').registro);
 app.get(/img/, require("./routes/img").send);
 app.get('/hacer_excel', require('./routes/descargar_modelo').send);
+app.get('/prediccion', require('./routes/prediccion').send);
 
 //Configuracion 
 
