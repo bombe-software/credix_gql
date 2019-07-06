@@ -29,11 +29,10 @@ exports.send =  async function (req, res) {
         u.localizacion +','+
         u.estado_emocional_1 +','+
         u.estado_emocional_2
-        
     });
     console.log(contenido);
     
-    fs.writeFile('./bd.csv', 'contenido', function (err) {
+    fs.writeFile('./bd.csv', contenido, function (err) {
         if (err) {
             return console.log(err);
         }
