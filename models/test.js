@@ -48,7 +48,8 @@ const test = mongoose.Schema({
         enum: ['nula ', 'primaria', 'secundaria', 'preparatoria', 'universidad', 'posgrado']
     },
     localizacion: String,
-    estado_emocional: String,
+    estado_emocional_1: String,
+    estado_emocional_2: String
 });
 
 mongoose.model('test', test);
