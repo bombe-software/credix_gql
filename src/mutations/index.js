@@ -3,7 +3,7 @@ const graphql = require('graphql');
 
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLBoolean } = graphql;
 
 //Funciones add
 const nullname = require('./nullname');
@@ -105,11 +105,35 @@ const RootMutation = new GraphQLObjectType({
     addTest: {
       type: require('./../schemas/test'),
       args: {
-        promedio_ingresos_mensuales: { type: GraphQLInt },
-        cliente: { type: GraphQLID }
+        cliente: { type: GraphQLID}, 
+        tipo_prestamo: { type: GraphQLString},
+        monto_credito: { type: GraphQLInt},
+        tipo_interes_manejar: { type: GraphQLString},
+        plazo: { type: GraphQLString},
+        motivo: { type: GraphQLString},
+        persona_empleada: { type: GraphQLBoolean},
+        personas_dependientes: { type: GraphQLInt},
+        personas_economicamente_activas: { type: GraphQLInt},
+        promedio_ganancia_mensual: { type: GraphQLInt}, 
+        gasto_arrienda: { type: GraphQLInt}, 
+        gasto_comida: { type: GraphQLInt},
+        gasto_transporte: { type: GraphQLInt},
+        gasto_servicios: { type: GraphQLInt},
+        gasto_deudas: { type: GraphQLInt },
+        trabajo_formal: { type: GraphQLBoolean},
+        seguros: { type: GraphQLBoolean },
+        cuenta_pago_compania: { type: GraphQLBoolean },
+        edad: { type: GraphQLInt },
+        escolaridad: { type: GraphQLString },
+        estado_emocional_1: { type: GraphQLString },
+        estado_emocional_2: { type: GraphQLString }
       },
-      resolve(parentValue, { cliente, promedio_ingresos_mensuales }, req) {
-        return test.add({ cliente, promedio_ingresos_mensuales, req });
+      resolve(parentValue, { cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamentes_actias,
+        promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
+        edad, escolaridad, estado_emocional_1, estado_emocional_2 }, req) {
+        return test.add({cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamentes_actias,
+          promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
+          edad, escolaridad, estado_emocional_1, estado_emocional_2, req });
       }
     },
     addSolicitud: {

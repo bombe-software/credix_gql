@@ -5,13 +5,15 @@ const Test = require('mongoose').model('test');
 async function add( args) {
 
     const {
-        cliente,
-        promedio_ingresos_mensuales
-    } = args;
+        cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamentes_actias,
+        promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
+        edad, escolaridad, estado_emocional_1, estado_emocional_2  } = args;
 
+        console.log(plazo);
     const test = new Test({
-        cliente,
-        promedio_ingresos_mensuales
+        cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamentes_actias,
+        promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
+        edad, escolaridad, estado_emocional_1, estado_emocional_2 
     });
     
     await test.save();
