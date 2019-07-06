@@ -7,6 +7,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt } = graphql;
 const nullname = require('./nullname');
 const usuario = require('./usuario');
 const tokens = require('./token');
+const agestor = require('./gestor');
 const cliente = require('./cliente');
 const amonestacion = require('./amonestacion');
 const test = require('./test');
@@ -130,7 +131,16 @@ const RootMutation = new GraphQLObjectType({
       resolve(parentValue, { status, id }, req) {
         return solicitud.aprobar_denegar({ status, id,  req });
       }
-    }
+    },
+    inhabilitarGestor: {
+      type: require('./../schemas/gestor'),
+      args: {
+        gestor: { type: GraphQLID },        
+      }, 
+      resolve(parentValue, { gestor }, req) {
+        return agestor.inhabilitar({ gestor });
+      }
+    },
   }
 });
 

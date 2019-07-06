@@ -34,15 +34,16 @@ async function signup(args) {
 
   const usuario = new User({
     email, nombre, nombre_usuario,
-    password, sexo, tipo_usuario,
-    status: 'Activo'
+    password, sexo, tipo_usuario
   });
+
   usuario.save(function (err, usu) { console.log(err); });
   const usuarioId = usuario._id;
 
   if (token) {
     const gestor = new Gestor({
-      usuario: usuarioId
+      usuario: usuarioId,
+      status: 'Activo'
     })
     const gestorS = await gestor.save();
     await Institucion.findByIdAndUpdate(institucionID.institucion,
