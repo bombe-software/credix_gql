@@ -79,8 +79,8 @@ const RootMutation = new GraphQLObjectType({
         curp: { type: GraphQLString },
         rfc: { type: GraphQLString }
       },
-      resolve(parentValue, { nombre,telefono,domicilio,edad,curp,rfc }, req) {
-        return cliente.add({ nombre,telefono,domicilio,edad,curp,rfc, req });
+      resolve(parentValue, { nombre, telefono, domicilio, edad, curp, rfc }, req) {
+        return cliente.add({ nombre, telefono, domicilio, edad, curp, rfc, req });
       }
     },
     addAmonestacion: {
@@ -98,8 +98,8 @@ const RootMutation = new GraphQLObjectType({
         solicitud: { type: GraphQLID },
         cantidad_deuda: { type: GraphQLInt }
       },
-      resolve(parentValue, { dias,cliente,solicitud,cantidad_deuda }, req) {
-        return amonestacion.add({ dias,cliente,solicitud,cantidad_deuda, req });
+      resolve(parentValue, { dias, cliente, solicitud, cantidad_deuda }, req) {
+        return amonestacion.add({ dias, cliente, solicitud, cantidad_deuda, req });
       }
     },
     addTest: {
@@ -139,11 +139,11 @@ const RootMutation = new GraphQLObjectType({
     addSolicitud: {
       type: require('./../schemas/solicitud'),
       args: {
-        cantidad: { type: GraphQLInt },        
+        cantidad: { type: GraphQLInt },
         cliente: { type: GraphQLID },
-        gestor: { type: GraphQLID },         
+        gestor: { type: GraphQLID },
         test: { type: GraphQLID }
-      }, 
+      },
       resolve(parentValue, { cantidad, cliente, gestor, test }, req) {
         return solicitud.add({ cantidad, cliente, gestor, test, req });
       }
@@ -153,16 +153,16 @@ const RootMutation = new GraphQLObjectType({
       args: {
         status: { type: GraphQLString },
         id: { type: GraphQLID }
-      }, 
+      },
       resolve(parentValue, { status, id }, req) {
-        return solicitud.aprobar_denegar({ status, id,  req });
+        return solicitud.aprobar_denegar({ status, id, req });
       }
     },
     inhabilitarGestor: {
       type: require('./../schemas/gestor'),
       args: {
-        gestor: { type: GraphQLID },        
-      }, 
+        gestor: { type: GraphQLID },
+      },
       resolve(parentValue, { gestor }, req) {
         return agestor.inhabilitar({ gestor });
       }
@@ -170,35 +170,42 @@ const RootMutation = new GraphQLObjectType({
     prediccion: {
       type: require('./../schemas/string_nativo'),
       args: {
-        imagen: { type: GraphQLString } 
+        imagen: { type: GraphQLString }
       },
       resolve(parentValue, { imagen }) {
-        var image = new Image();
-        image.src = imagen;
+        console.log('dssdf');
+        fs.writeFile('./image.jpg', imagen.split(';base64,').pop(), { encoding: 'base64' }, function (err) {
+          console.log('File created');
+          var params = {
+            images_file: fs.createReadStream('./image.png'),
+            classifier_ids: ["DefaultCustomModel_1460318682"],
+            threshold: 0.2
+          };
+          console.log(params);
 
-        var visualRecognition = new VisualRecognitionV3({
-          version: '2018-03-19',
-          iam_apikey: 'vUt4mo3qJw0Gbg0B_iNG6dmel_PJptPlym-08bL4k-LH'
+          var visualRecognition = new VisualRecognitionV3({
+            version: '2018-03-19',
+            iam_apikey: 'vUt4mo3qJw0Gbg0B_iNG6dmel_PJptPlym-08bL4k-LH'
+          });
+          const string = 'null';
+
+          console.log('some');
+
+          visualRecognition.classify(params, function (err, response) {
+            console.log(response);
+            if (err) {
+              console.log(err);
+            } else {
+              string = JSON.stringify(response);
+              console.log(string)
+            }
+          });
         });
-        var params = {
-          images_file: image,
-          classifier_ids: ["DefaultCustomModel_1460318682"],
-          threshold: 0.2
-        };
-    
-        const string = null;
-        visualRecognition.classify(params, function(err, response) {
-          console.log(response);
-          if (err) { 
-            console.log(err);
-          } else {
-            string = JSON.stringify(response);
-            console.log(string)
-          }
-        });
+
+
         return { string };
       }
-    }  
+    }
   }
 });
 
