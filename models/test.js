@@ -22,17 +22,16 @@ const test = mongoose.Schema({
     },
     plazo:{
         type: String,
-        enum: ['corto ', 'mediano', 'largo'],
+        enum: ['corto', 'mediano', 'largo'],
     },
     motivo:{
         type: String,
-        enum: ['refaccionario ', 'financiamiento']
+        enum: ['refaccionario', 'financiamiento']
     },
     persona_empleada: Boolean,
     personas_dependientes: Number,
     personas_economicamente_activas: Number, // 9,10
     promedio_gananacia_mensual: Number,
-    promedio_ganancias: Number,
     gasto_arrienda: Number,
     gasto_comida: Number, 
     gasto_transporte: Number,
@@ -40,13 +39,13 @@ const test = mongoose.Schema({
     gasto_deudas: Number,
     trabajo_formal: Boolean, //Validar con RFC en front
     seguros: Boolean,
-    cuenta_pago_compañia: Boolean,
+    cuenta_pago_compania: Boolean,
     edad: Number,
     escolaridad: {
         type: String,
         enum: ['nula ', 'primaria', 'secundaria', 'preparatoria', 'universidad', 'posgrado']
     },
-    localizacion: String,
+    //localizacion: String,
     estado_emocional_1: String,
     estado_emocional_2: String
 });
