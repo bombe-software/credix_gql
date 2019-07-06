@@ -30,7 +30,7 @@ const test = mongoose.Schema({
     },
     persona_empleada: Boolean,
     personas_dependientes: Number,
-    personas_economicamente_activas: Number,
+    personas_economicamente_activas: Number, // 9,10
     promedio_gananacia_mensual: Number,
     promedio_ganancias: Number,
     gasto_arrienda: Number,
@@ -41,7 +41,6 @@ const test = mongoose.Schema({
     trabajo_formal: Boolean, //Validar con RFC en front
     seguros: Boolean,
     cuenta_pago_compañia: Boolean,
-    consulta_buro: Boolean,
     edad: Number,
     escolaridad: {
         type: String,
