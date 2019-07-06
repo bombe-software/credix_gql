@@ -1,6 +1,8 @@
 //Configuracion de GraphQL
 const graphql = require('graphql');
 
+const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt } = graphql;
 
 //Funciones add
@@ -141,6 +143,38 @@ const RootMutation = new GraphQLObjectType({
         return agestor.inhabilitar({ gestor });
       }
     },
+    prediccion: {
+      type: require('./../schemas/string_nativo'),
+      args: {
+        imagen: { type: GraphQLString } 
+      },
+      resolve(parentValue, { imagen }) {
+        var image = new Image();
+        image.src = imagen;
+
+        var visualRecognition = new VisualRecognitionV3({
+          version: '2018-03-19',
+          iam_apikey: 'vUt4mo3qJw0Gbg0B_iNG6dmel_PJptPlym-08bL4k-LH'
+        });
+        var params = {
+          images_file: image,
+          classifier_ids: ["DefaultCustomModel_1460318682"],
+          threshold: 0.2
+        };
+    
+        const string = null;
+        visualRecognition.classify(params, function(err, response) {
+          console.log(response);
+          if (err) { 
+            console.log(err);
+          } else {
+            string = JSON.stringify(response);
+            console.log(string)
+          }
+        });
+        return { string };
+      }
+    }  
   }
 });
 
