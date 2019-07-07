@@ -8,7 +8,7 @@ const test = mongoose.Schema({
     },
     tipo_prestamo: {
         type: String,
-        enum: ['personal ', 'bienes de consumo duradero', 'estudios', 'hipotecarios', 'empresarial'],
+        enum: ['personal','estudios', 'hipotecarios'],
     },
     monto_credito: Number,
     /**
@@ -18,7 +18,7 @@ const test = mongoose.Schema({
      */
     tipo_interes_manejar:{
         type: String,
-        enum: ['variable ', 'fijo'],
+        enum: ['variable', 'fijo'],
     },
     plazo:{
         type: String,
@@ -31,7 +31,7 @@ const test = mongoose.Schema({
     persona_empleada: Boolean,
     personas_dependientes: Number,
     personas_economicamente_activas: Number, // 9,10
-    promedio_gananacia_mensual: Number,
+    promedio_ganancia_mensual: Number,
     gasto_arrienda: Number,
     gasto_comida: Number, 
     gasto_transporte: Number,
@@ -43,11 +43,30 @@ const test = mongoose.Schema({
     edad: Number,
     escolaridad: {
         type: String,
-        enum: ['nula ', 'primaria', 'secundaria', 'preparatoria', 'universidad', 'posgrado']
+        enum: ['nula', 'primaria', 'secundaria', 'preparatoria', 'universidad', 'posgrado']
     },
     //localizacion: String,
     estado_emocional_1: String,
-    estado_emocional_2: String
-});
+    estado_emocional_2: String,
+    ordenar: Number,
+    comprar_nuevo: Number,
+    estado_civil: {
+        type: String,
+        enum: ['casado', 'divorciado', 'viudo']
+    },
+    trabajo: {
+        type: String,
+        enum: ['oficio', 'licenciado', 'ingeniero', 'abogado', 'salud', 'social','servidor_publico']
+    },
+    plaza: {
+        type: String,
+        enum: ['tecnologia', 'ropa','cine', 'comida']
+    },
+    bateria: {
+        type: String,
+        enum: ['trabajo', 'noche', 'tarde']
+    },
+    math:Number
+})
 
 mongoose.model('test', test);
