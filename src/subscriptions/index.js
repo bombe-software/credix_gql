@@ -4,7 +4,7 @@ const { GraphQLObjectType } = graphql;
 const pubsub = require('./../../config/pubsub').pubsub;
 
 //Tipos de chemas
-const NullnameType = require('./../schemas/nullname');
+const NullnameType = require('./../schemas/string_nativo');
 
 
 //Contantes de las suscripciones

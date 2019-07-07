@@ -100,6 +100,12 @@ const RootQuery = new GraphQLObjectType({
       resolve(parentValue, values, req) {
         return Solicitud.find({gestor: mongoose.Types.ObjectId(req.user.id)});
       }
+    },
+    string_nativo: {
+      type: new GraphQLList(require('./string_nativo')),
+      resolve(parentValue, values, req) {
+        return {string: ""};
+      }
     }     
   })
 });

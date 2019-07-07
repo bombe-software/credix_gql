@@ -1,5 +1,7 @@
 //Configuracion de GraphQL
 const graphql = require('graphql');
+const { createCanvas, loadImage } = require('canvas');
+const pubsub = require('./../../pubsub').pubsub;
 
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
@@ -14,6 +16,49 @@ const cliente = require('./cliente');
 const amonestacion = require('./amonestacion');
 const test = require('./test');
 const solicitud = require('./solicitud');
+
+const io = require('socket.io');
+
+function decodeBase64Image(dataString) {
+  var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+    response = {};
+
+  if (matches.length !== 3) {
+    return new Error('Invalid input string');
+  }
+
+  response.type = matches[1];
+  response.data = new Buffer(matches[2], 'base64');
+
+  return response;
+}
+
+async function analize_img(imagen){
+  const image = decodeBase64Image(imagen);
+        
+  var params = {
+    images_file: image.data,
+    classifier_ids: ["DefaultCustomModel_1460318682"],
+    threshold: 0.2
+  };
+  var visualRecognition = new VisualRecognitionV3({
+    version: '2018-03-19',
+    iam_apikey: 'vUt4mo3qJw0Gbg0B_iNG6dmel_PJptPlym-08bL4k-LH'
+  });
+  let res = '';
+  visualRecognition.classify(params, function (err, response) {
+
+    try{
+      res = JSON.stringify(response.images[0].classifiers[0].classes);
+      //io.emit('image', { string: res });
+    }catch(err){
+      console.log(err);
+    }
+  });
+  return { string: res }
+}
+      
+
 
 const RootMutation = new GraphQLObjectType({
   name: 'Mutaciones',
@@ -105,22 +150,22 @@ const RootMutation = new GraphQLObjectType({
     addTest: {
       type: require('./../schemas/test'),
       args: {
-        cliente: { type: GraphQLID}, 
-        tipo_prestamo: { type: GraphQLString},
-        monto_credito: { type: GraphQLInt},
-        tipo_interes_manejar: { type: GraphQLString},
-        plazo: { type: GraphQLString},
-        motivo: { type: GraphQLString},
-        persona_empleada: { type: GraphQLBoolean},
-        personas_dependientes: { type: GraphQLInt},
-        personas_economicamente_activas: { type: GraphQLInt},
-        promedio_ganancia_mensual: { type: GraphQLInt}, 
-        gasto_arrienda: { type: GraphQLInt}, 
-        gasto_comida: { type: GraphQLInt},
-        gasto_transporte: { type: GraphQLInt},
-        gasto_servicios: { type: GraphQLInt},
+        cliente: { type: GraphQLID },
+        tipo_prestamo: { type: GraphQLString },
+        monto_credito: { type: GraphQLInt },
+        tipo_interes_manejar: { type: GraphQLString },
+        plazo: { type: GraphQLString },
+        motivo: { type: GraphQLString },
+        persona_empleada: { type: GraphQLBoolean },
+        personas_dependientes: { type: GraphQLInt },
+        personas_economicamente_activas: { type: GraphQLInt },
+        promedio_ganancia_mensual: { type: GraphQLInt },
+        gasto_arrienda: { type: GraphQLInt },
+        gasto_comida: { type: GraphQLInt },
+        gasto_transporte: { type: GraphQLInt },
+        gasto_servicios: { type: GraphQLInt },
         gasto_deudas: { type: GraphQLInt },
-        trabajo_formal: { type: GraphQLBoolean},
+        trabajo_formal: { type: GraphQLBoolean },
         seguros: { type: GraphQLBoolean },
         cuenta_pago_compania: { type: GraphQLBoolean },
         edad: { type: GraphQLInt },
@@ -128,12 +173,14 @@ const RootMutation = new GraphQLObjectType({
         estado_emocional_1: { type: GraphQLString },
         estado_emocional_2: { type: GraphQLString }
       },
-      resolve(parentValue, { cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamentes_actias,
-        promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
+      resolve(parentValue, { cliente, tipo_prestamo, monto_credito, tipo_interes_manejar, plazo, motivo, persona_empleada, personas_dependientes, personas_economicamentes_actias,
+        promedio_ganancia_mensual, gasto_arrienda, gasto_comida, gasto_transporte, gasto_servicios, gasto_deudas, trabajo_formal, seguros, cuenta_pago_compania,
         edad, escolaridad, estado_emocional_1, estado_emocional_2 }, req) {
-        return test.add({cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamentes_actias,
-          promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
-          edad, escolaridad, estado_emocional_1, estado_emocional_2, req });
+        return test.add({
+          cliente, tipo_prestamo, monto_credito, tipo_interes_manejar, plazo, motivo, persona_empleada, personas_dependientes, personas_economicamentes_actias,
+          promedio_ganancia_mensual, gasto_arrienda, gasto_comida, gasto_transporte, gasto_servicios, gasto_deudas, trabajo_formal, seguros, cuenta_pago_compania,
+          edad, escolaridad, estado_emocional_1, estado_emocional_2, req
+        });
       }
     },
     addSolicitud: {
@@ -173,37 +220,7 @@ const RootMutation = new GraphQLObjectType({
         imagen: { type: GraphQLString }
       },
       resolve(parentValue, { imagen }) {
-        console.log('dssdf');
-        fs.writeFile('./image.jpg', imagen.split(';base64,').pop(), { encoding: 'base64' }, function (err) {
-          console.log('File created');
-          var params = {
-            images_file: fs.createReadStream('./image.png'),
-            classifier_ids: ["DefaultCustomModel_1460318682"],
-            threshold: 0.2
-          };
-          console.log(params);
-
-          var visualRecognition = new VisualRecognitionV3({
-            version: '2018-03-19',
-            iam_apikey: 'vUt4mo3qJw0Gbg0B_iNG6dmel_PJptPlym-08bL4k-LH'
-          });
-          const string = 'null';
-
-          console.log('some');
-
-          visualRecognition.classify(params, function (err, response) {
-            console.log(response);
-            if (err) {
-              console.log(err);
-            } else {
-              string = JSON.stringify(response);
-              console.log(string)
-            }
-          });
-        });
-
-
-        return { string };
+        return analize_img(imagen);
       }
     }
   }
