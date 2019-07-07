@@ -171,16 +171,21 @@ const RootMutation = new GraphQLObjectType({
         edad: { type: GraphQLInt },
         escolaridad: { type: GraphQLString },
         estado_emocional_1: { type: GraphQLString },
-        estado_emocional_2: { type: GraphQLString }
+        estado_emocional_2: { type: GraphQLString },
+        ordenar: { type: GraphQLInt },
+        comprar_nuevo:  { type: GraphQLInt },
+        estado_civil:  { type: GraphQLString },
+        trabajo:  { type: GraphQLString },
+        plaza:  { type: GraphQLString },
+        bateria:  { type: GraphQLString },
+        math:  { type: GraphQLInt }
       },
-      resolve(parentValue, { cliente, tipo_prestamo, monto_credito, tipo_interes_manejar, plazo, motivo, persona_empleada, personas_dependientes, personas_economicamentes_actias,
-        promedio_ganancia_mensual, gasto_arrienda, gasto_comida, gasto_transporte, gasto_servicios, gasto_deudas, trabajo_formal, seguros, cuenta_pago_compania,
-        edad, escolaridad, estado_emocional_1, estado_emocional_2 }, req) {
-        return test.add({
-          cliente, tipo_prestamo, monto_credito, tipo_interes_manejar, plazo, motivo, persona_empleada, personas_dependientes, personas_economicamentes_actias,
-          promedio_ganancia_mensual, gasto_arrienda, gasto_comida, gasto_transporte, gasto_servicios, gasto_deudas, trabajo_formal, seguros, cuenta_pago_compania,
-          edad, escolaridad, estado_emocional_1, estado_emocional_2, req
-        });
+      resolve(parentValue, { cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamente_activas,
+        promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
+        edad, escolaridad, estado_emocional_1, estado_emocional_2,ordenar,comprar_nuevo,estado_civil,trabajo,plaza,bateria,math }, req) {
+        return test.add({cliente, tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo, persona_empleada,personas_dependientes,personas_economicamente_activas,
+          promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal, seguros, cuenta_pago_compania,
+          edad, escolaridad, estado_emocional_1, estado_emocional_2,ordenar,comprar_nuevo,estado_civil,trabajo,plaza,bateria,math, req });
       }
     },
     addSolicitud: {

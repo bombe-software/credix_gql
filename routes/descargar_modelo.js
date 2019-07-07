@@ -3,41 +3,51 @@ const mongoose = require('mongoose');
 const Test = mongoose.model('test');
 
 exports.send =  async function (req, res) {
-    var contenido = await Test.find({}).map((u) => {
-        return 
-        u.tipo_prestamo +','+
-        u.monto_credito +','+ 
-        u.tipo_interes_manejar +','+
-        u.plazo +','+  
-        u.motivo +','+
-        u.persona_empleada +','+
-        u.personas_dependientes +','+
-        u.personas_economicamente_activas +','+
-        u.promedio_gananacia_mensual +','+
-        u.promedio_ganancias +','+
-        u.gasto_arrienda +','+
-        u.gasto_comida +','+
-        u.gasto_transporte +','+
-        u.gasto_servicios +','+
-        u.gasto_deudas +','+
-        u.trabajo_formal +','+
-        u.seguros +','+
-        u.cuenta_pago_compañia +','+
-        u.consulta_buro +','+
-        u.edad +','+
-        u.escolaridad +','+
-        u.localizacion +','+
-        u.estado_emocional_1 +','+
-        u.estado_emocional_2
-    });
-    console.log(contenido);
+    let contenido = await Test.find()
+        // console.log(contenido)
+        contenido =contenido.map(u=>{
+
+            return (
+            u.tipo_prestamo +','+
+            u.monto_credito +','+ 
+            u.tipo_interes_manejar +','+
+            u.plazo +','+  
+            u.motivo +','+
+            u.persona_empleada +','+
+            u.personas_dependientes +','+
+            u.personas_economicamente_activas +','+
+            u.promedio_ganancia_mensual +','+
+            u.gasto_arrienda +','+
+            u.gasto_comida +','+
+            u.gasto_transporte +','+
+            u.gasto_servicios +','+
+            u.gasto_deudas +','+
+            u.trabajo_formal +','+
+            u.seguros +','+
+            u.cuenta_pago_compania +','+
+            u.edad +','+
+            u.escolaridad +','+
+            // u.localizacion +','+
+            u.estado_emocional_1 +','+
+            u.estado_emocional_2 +','+
+            u.ordenar +','+
+            u.comprar_nuevo +','+
+            u.estado_civil +','+
+            u.trabajo +','+
+            u.plaza +','+
+            u.bateria
+            )
+        })
+       // console.log(contenido);
+
     
-    fs.writeFile('./bd.csv', contenido, function (err) {
+    fs.writeFile('./bd.csv', contenido.join('\n'), function (err) {
         if (err) {
             return console.log(err);
         }
         console.log("Archivo escrito correctamente!")
     });
+    res.end();
     /*
     tipo_prestamo ['personal ', 'bienes de consumo duradero', 'estudios', 'hipotecarios', 'empresarial']
     monto_credito Number
