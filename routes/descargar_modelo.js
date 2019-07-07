@@ -5,8 +5,9 @@ const Test = mongoose.model('test');
 exports.send =  async function (req, res) {
     let contenido = await Test.find()
         // console.log(contenido)
+      
         contenido =contenido.map(u=>{
-
+            console.log(u.status)
             return (
             u.tipo_prestamo +','+
             u.monto_credito +','+ 
@@ -35,7 +36,8 @@ exports.send =  async function (req, res) {
             u.estado_civil +','+
             u.trabajo +','+
             u.plaza +','+
-            u.bateria
+            u.bateria +','+
+            u.amonestaciones.length
             )
         })
        // console.log(contenido);

@@ -15,10 +15,6 @@ const solicitud = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'test'
     },
-    amonestaciones:[{
-        type: Schema.Types.ObjectId,
-        ref: 'amonestacion'
-    }],
     status: {
         type: String,
         enum: ['Aprobada', 'Negada', 'Pendiente']

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Solicitud = require('mongoose').model('solicitud');
 const Cliente = require('mongoose').model('cliente');
+const Test = require('mongoose').model('test');
 //Funcion
 async function add(args) {
     const {
@@ -8,7 +9,7 @@ async function add(args) {
         gestor, test
     } = args;
 
-    
+
     const solicitud = new Solicitud({
         cantidad, cliente,
         gestor, test,
@@ -23,12 +24,20 @@ async function add(args) {
     return Solicitud.findOne({ cliente });
 }
 
-async function aprobar_denegar( args) {
+async function aprobar_denegar(args) {
     const {
-        status,id
+        status, id
     } = args;
-    
+
     console.log(status, id);
+    let res = await Solicitud.findByIdAndUpdate(mongoose.Types.ObjectId(id), {
+        status
+    }, { new: true });
+
+    await Test.findByIdAndUpdate(res.test, {
+        status
+    }, { new: true });
+
 
     return Solicitud.findById(mongoose.Types.ObjectId(id));
 }

@@ -66,7 +66,15 @@ const test = mongoose.Schema({
         type: String,
         enum: ['trabajo', 'noche', 'tarde']
     },
-    math:Number
+    math:Number,
+    amonestaciones:[{
+        type: Schema.Types.ObjectId,
+        ref: 'amonestacion'
+    }],
+    status: {
+        type: String,
+        enum: ['Aprobada', 'Negada', 'Pendiente']
+    }
 })
 
 mongoose.model('test', test);

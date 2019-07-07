@@ -1,4 +1,4 @@
-estudios,34,variable,corto,financiamiento,false,3,3,undefined,3,3,3,3,3,false,true,false,34,nula,,,undefined,undefined,undefined,undefined,undefined,undefined
-personal,4,fijo,corto,refaccionario,false,4,4,4,4,4,4,4,4,false,true,false,45,nula,,,undefined,undefined,undefined,undefined,undefined,undefined
-personal,23,fijo,mediano,financiamiento,false,3,3,3,3,3,3,3,3,true,true,false,33,nula,,,undefined,undefined,undefined,undefined,undefined,undefined
-estudios,12,fijo,mediano,refaccionario,false,1,1,1,1,1,1,1,1,true,true,false,12,primaria,,,1,2,divorciado,licenciado,tecnologia,tarde
+estudios,34,variable,corto,financiamiento,false,3,3,undefined,3,3,3,3,3,false,true,false,34,nula,,,undefined,undefined,undefined,undefined,undefined,undefined,0
+personal,4,fijo,corto,refaccionario,false,4,4,4,4,4,4,4,4,false,true,false,45,nula,,,undefined,undefined,undefined,undefined,undefined,undefined,0
+personal,23,fijo,mediano,financiamiento,false,3,3,3,3,3,3,3,3,true,true,false,33,nula,,,undefined,undefined,undefined,undefined,undefined,undefined,0
+estudios,12,fijo,mediano,refaccionario,false,1,1,1,1,1,1,1,1,true,true,false,12,primaria,,,1,2,divorciado,licenciado,tecnologia,tarde,0

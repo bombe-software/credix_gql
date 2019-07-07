@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = require('graphql');
 const Test = require('mongoose').model('test');
 
 const TestType = new GraphQLObjectType({
@@ -12,7 +12,15 @@ const TestType = new GraphQLObjectType({
                     .then(test => test.cliente);
             }
         },
-        promedio_ingresos_mensuales: { type: GraphQLString }
+        promedio_ingresos_mensuales: { type: GraphQLString },
+        amonestaciones: {
+            type: new GraphQLList(require('./amonestacion')),
+            resolve(parentValue) {
+              return Solicitud.findById(parentValue.id)
+                .populate('amonestacion')
+                .then(solicitud => solicitud.amonestacion);
+            }
+          },
     })
 });
 

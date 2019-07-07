@@ -27,14 +27,6 @@ const SolicitudType = new GraphQLObjectType({
           .then(solicitud => solicitud.test);
       }
     },
-    amonestaciones: {
-      type: new GraphQLList(require('./amonestacion')),
-      resolve(parentValue) {
-        return Cliente.findById(parentValue.id)
-          .populate('amonestacion')
-          .then(cliente => cliente.amonestacion);
-      }
-    },
     status: { type: GraphQLString },
     fecha: { type: GraphQLString }
   })
