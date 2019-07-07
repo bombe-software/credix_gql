@@ -39,7 +39,7 @@ exports.send =  async function (req, res) {
             )
         })
        // console.log(contenido);
-
+    contenido.unshift('tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo,persona_empleada,personas_dependientes,personas_economicamente_activas,promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal,seguros,cuenta_pago_compania,edad,escolaridad,estado_emocional_1,estado_emocional_2,ordenar,comprar_nuevo,estado_civil,trabajo,plaza,bateria,amonestaciones,status')
     
     fs.writeFile('./bd.csv', contenido.join('\n'), function (err) {
         if (err) {

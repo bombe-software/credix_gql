@@ -1,5 +1,7 @@
-estudios,34,variable,corto,financiamiento,false,3,3,undefined,3,3,3,3,3,false,true,false,34,nula,,,undefined,undefined,undefined,undefined,undefined,undefined,0
-personal,4,fijo,corto,refaccionario,false,4,4,4,4,4,4,4,4,false,true,false,45,nula,,,undefined,undefined,undefined,undefined,undefined,undefined,0
-personal,23,fijo,mediano,financiamiento,false,3,3,3,3,3,3,3,3,true,true,false,33,nula,,,undefined,undefined,undefined,undefined,undefined,undefined,0
-estudios,12,fijo,mediano,refaccionario,false,1,1,1,1,1,1,1,1,true,true,false,12,primaria,,,1,2,divorciado,licenciado,tecnologia,tarde,0
-estudios,4,fijo,mediano,refaccionario,false,4,4,4,4,4,4,4,4,false,true,false,4,primaria,Confiado,Enojado,1,0,viudo,oficio,tecnologia,noche,0
+tipo_prestamo,monto_credito,tipo_interes_manejar,plazo,motivo,persona_empleada,personas_dependientes,personas_economicamente_activas,promedio_ganancia_mensual,gasto_arrienda,gasto_comida,gasto_transporte,gasto_servicios,gasto_deudas,trabajo_formal,seguros,cuenta_pago_compania,edad,escolaridad,estado_emocional_1,estado_emocional_2,ordenar,comprar_nuevo,estado_civil,trabajo,plaza,bateria,amonestaciones,status
+personal,5000,fijo,corto,refaccionario,false,15215,121,12,12,12,12,2,2,false,true,false,2,primaria,Confiado,Enojado,0,0,casado,licenciado,cine,noche,0,Pendiente
+personal,12212,fijo,corto,financiamiento,false,13313,3141,3234234,23432,234324,5235,23324,2343244,true,true,false,324324,preparatoria,,,0,0,casado,oficio,tecnologia,trabajo,0,Pendiente
+personal,11232,fijo,corto,refaccionario,false,1233,123,123,123,123,13,213,123,true,true,false,213,primaria,,,0,0,divorciado,licenciado,ropa,trabajo,0,Pendiente
+personal,12321323,fijo,corto,refaccionario,false,213123,123123,21,123123,123,123,213,123213,true,false,false,213213,primaria,,,1,0,casado,abogado,tecnologia,trabajo,0,Pendiente
+personal,234,fijo,corto,refaccionario,false,234,32432,324,234,234,234,234,234,true,false,false,234,primaria,,,0,2,divorciado,licenciado,tecnologia,trabajo,0,Pendiente
+personal,12213,fijo,corto,refaccionario,false,213312,123123,213213,123123,123123,1233,1233,123213,true,true,false,123,nula,,,0,0,divorciado,oficio,tecnologia,trabajo,0,Pendiente
